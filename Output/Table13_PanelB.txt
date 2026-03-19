@@ -1,0 +1,11 @@
+		(1)	(2)
+		CAR[-1 1]	CAR[-1 1]
+VARIABLES	LABELS	Market	FF
+			
+have_pos_ml	Positive Env Disclosure	0.006**	0.006**
+		(0.002)	(0.002)
+			
+Observations		2,144	2,144
+R-squared		0.030	0.030
+Robust standard errors in parentheses			
+*** p<0.01, ** p<0.05, * p<0.1			

@@ -1,0 +1,12 @@
+		(1)	(2)	(3)	(4)
+		Seller CAR[−1 +1]	Seller CAR[−1 +1]	Seller CAR[−1 +1]	Seller CAR[−1 +1]
+		Market	Market	FF	FF
+VARIABLES	LABELS	Quantity	Intensity	Quantity	Intensity
+					
+pollution_quartile	pollution_quartile	0.010	0.011**	0.012**	0.013
+		(0.000)	(0.005)	(0.004)	(0.000)
+					
+Observations		277	246	278	246
+R-squared		0.307	0.410	0.307	0.429
+Robust standard errors in parentheses					
+*** p<0.01, ** p<0.05, * p<0.1					

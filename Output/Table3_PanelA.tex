@@ -1,0 +1,19 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{5}{c}}
+\toprule
+                    &\multicolumn{1}{c}{Rated}&\multicolumn{1}{c}{Pension Holidings}&\multicolumn{1}{c}{Democrat HQ}&\multicolumn{1}{c}{Env. Event}&\multicolumn{1}{c}{Pressure Index}\\\cmidrule(lr){2-2}\cmidrule(lr){3-3}\cmidrule(lr){4-4}\cmidrule(lr){5-5}\cmidrule(lr){6-6}
+                    &\multicolumn{1}{c}{(1)}   &\multicolumn{1}{c}{(2)}   &\multicolumn{1}{c}{(3)}   &\multicolumn{1}{c}{(4)}   &\multicolumn{1}{c}{(5)}   \\
+\midrule
+Environmental Pressure&       1.214***&       0.720***&       0.590** &       1.897***&       2.110***\\
+                    &     (0.303)   &     (0.269)   &     (0.278)   &     (0.506)   &     (0.593)   \\
+\addlinespace
+Constant            &       2.188***&       2.532***&       2.523***&       2.368***&       1.810***\\
+                    &     (0.403)   &     (0.407)   &     (0.418)   &     (0.418)   &     (0.478)   \\
+\midrule
+\(R^{2}\)           &       0.059   &       0.059   &       0.056   &       0.072   &       0.060   \\
+Observations        &      18,826   &      18,826   &      17,369   &      11,295   &      18,826   \\
+Industry-Year FE    &         Yes   &         Yes   &         Yes   &         Yes   &         Yes   \\
+\bottomrule
+\end{tabular}
+}

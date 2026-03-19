@@ -1,0 +1,24 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}   &\multicolumn{1}{c}{(2)}   &\multicolumn{1}{c}{(3)}   &\multicolumn{1}{c}{(4)}   \\
+\midrule
+Env. Event          &       1.068** &       1.077** &       1.133** &       1.074*  \\
+                    &     (0.535)   &     (0.542)   &     (0.544)   &     (0.615)   \\
+\addlinespace
+Social Event        &               &               &      -0.219   &      -0.490   \\
+                    &               &               &     (0.430)   &     (0.449)   \\
+\addlinespace
+Gov. Event          &               &               &       0.491   &       0.416   \\
+                    &               &               &     (0.532)   &     (0.599)   \\
+\midrule
+\(R^{2}\)           &       0.138   &       0.141   &       0.141   &       0.189   \\
+Observations        &      11,629   &      11,436   &      11,436   &      11,243   \\
+Firm FE             &         Yes   &         Yes   &         Yes   &         Yes   \\
+Year FE             &               &               &               &               \\
+Firm Char           &               &               &               &               \\
+Industry-Year FE    &               &               &               &               \\
+\bottomrule
+\end{tabular}
+}

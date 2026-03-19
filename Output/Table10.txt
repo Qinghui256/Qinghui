@@ -1,0 +1,10 @@
+		(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)
+VARIABLES	LABELS	Positive Env Disclosure	Positive Env Disclosure	Positive Env Disclosure	Negative Env Disclosure	Negative Env Disclosure	Negative Env Disclosure	Positive Env Disclosure	Negative Env Disclosure
+									
+target	Seller(Pollutive) X Post	0.060**	0.051*	0.056*	-0.003	-0.008	0.002	0.062**	0.005
+		(0.030)	(0.031)	(0.031)	(0.021)	(0.022)	(0.021)	(0.031)	(0.021)
+									
+Observations		37,923	37,796	33,873	37,923	37,796	33,873	237,867	237,867
+R-squared		0.468	0.499	0.520	0.659	0.688	0.711	0.496	0.712
+Robust standard errors in parentheses									
+*** p<0.01, ** p<0.05, * p<0.1									

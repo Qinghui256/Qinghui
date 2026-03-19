@@ -1,0 +1,12 @@
+		(1)	(2)	(3)
+VARIABLES	LABELS	Divested	Divested	Divested
+				
+pressure_index_own	Pressure Index, Own	0.018***	0.018***	0.018***
+		(0.005)	(0.005)	(0.005)
+min_pressure_index_friend	Pressure Index, Connected Firms' Min	-0.007*	-0.009**	-0.008*
+		(0.004)	(0.004)	(0.004)
+				
+Observations		11,824	11,514	11,107
+R-squared		0.015	0.075	0.080
+Robust standard errors in parentheses				
+*** p<0.01, ** p<0.05, * p<0.1				

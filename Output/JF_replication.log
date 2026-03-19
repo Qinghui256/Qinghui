@@ -1,0 +1,374 @@
+--------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcode\Repl
+> ication code-20230154/Output/JF_replication.log
+  log type:  text
+ opened on:  18 Mar 2026, 17:16:12
+
+. 
+. *************************************************************
+. ******  define globals
+. *************************************************************
+.     
+.         global ind naics3
+
+.         global clu trifd  
+
+.         global firmvar lev q tang cash
+
+. 
+.         global coefplotspe      yline(0) ci(90) recast(connected) ciopts(lp(da
+> sh) recast(rcap)) graphregion(color(white) lwidth(large)) bgcolor(white) ysize
+> (3)  omitted
+
+.         global format booktabs noobs sfmt(%12.0gc %12.0fc)  b(%9.3f) se   star
+> levels(* .10 ** .05 *** .01 )  label collabels(none) noconstant  nonotes repla
+> ce  nomtitles  r2(%8.3f) 
+
+.         global instruct "stats(coef se) bdec(3) tdec(2) rdec(3) alpha(.01, .05
+> , .1) nocons label"
+
+.         
+.         global fe1 plantid year
+
+.         global fe2 plantid statecd#year
+
+.         global fe3 plantid naics3#year statecd#year
+
+. 
+.         global matchedfe1 cohort_id#plantid cohort_id#year 
+
+.         global matchedfe2 cohort_id#plantid cohort_id#statecd#year
+
+.         global matchedfe3 cohort_id#plantid cohort_id#statecd#year cohort_id#n
+> aics3#year 
+
+. 
+.         global chemicalfe1 chemicalid#plantid chemicalid#year
+
+.         global chemicalfe2 chemicalid#plantid chemicalid#year statecd#year
+
+.         global chemicalfe3 chemicalid#plantid chemicalid#year naics3#year stat
+> ecd#year
+
+. 
+.         global matchedchemicalfe1 cohort_id#plantid#chemicalid cohort_id#year#
+> chemicalid 
+
+.         global matchedchemicalfe2 cohort_id#plantid#chemicalid cohort_id#year#
+> chemicalid  cohort_id#statecd#year
+
+.         global matchedchemicalfe3 cohort_id#plantid#chemicalid cohort_id#year#
+> chemicalid  cohort_id#statecd#year cohort_id#naics3#year 
+
+. 
+.         global chemicalscalars scalars( "plantchemical Plant-Chemical FE" "che
+> micalyear Chemical-Year FE" "stateyear State-Year FE" "naics3year Industry-Yea
+> r FE"   "model Model" "N Observations" )
+
+.         global scalars scalars( "plant Plant FE" "year Year FE" "stateyear Sta
+> te-Year FE" "naics3year Industry-Year FE"   "model Model" "N Observations"  )
+
+.                 
+.          
+.         global gdideventdynamics   zero time_3 time_2 time_1 time0 time1 time2
+>  time3plus 
+
+.         global gdidcoeffs "time* zero" 
+
+.         global gdidrenames "zero=<-3  time_3=-3 time_2=-2 time_1=-1 time0=0 ti
+> me1=1 time2 = 2 time3plus=3+>"  
+
+. 
+.         global matcheddynamics zero t_3_treat t_2_treat t_1_treat t0_treat t1_
+> treat t2_treat t3plus_treat
+
+.         global matchedcoeffs "t*treat zero" 
+
+.         global matchedrenames "zero=<-3 t_3_treat=-3 t_2_treat=-2 t_1_treat=-1
+>  t0_treat=0 t1_treat=1 t2_treat=2 t3plus_treat=3+> "  
+
+. 
+.                         
+. 
+end of do-file
+
+. do "C:\Users\qzhan256\AppData\Local\Temp\STD81e8_000001.tmp"
+
+.                 use Table1.dta, clear 
+
+.                 estpost tabstat sold_pol_cusip  kldyear hq_dem_county pension_
+> mean_tri have_e_event pressure_index1 seg_num  naics3_count n_subs  depth_max 
+> block_pct $firmvar, statistics( n mean median sd p25 p75) columns(stats)
+
+Summary statistics: count mean p50 sd p25 p75
+     for variables: sold_pol_cusip kldyear hq_dem_county pension_mean_tri have_e
+> _event pressure_index1 seg_num naics3_count n_subs depth_max block_pct lev q t
+> ang cash
+
+             |  e(count)    e(mean)     e(p50)      e(sd)     e(p25)     e(p75) 
+-------------+------------------------------------------------------------------
+sold_pol_c~p |     19459   1.896295          0   13.63976          0          0 
+     kldyear |     19459    .554345          1   .4970506          0          1 
+hq_dem_cou~y |     17936   .6628011          1   .4727666          0          1 
+pension_me~i |     19459     .45804          0    .498249          0          1 
+have_e_event |     11680   .1922945          0   .3941201          0          0 
+pressure_i~1 |     19459   .4911823         .5   .3016973        .25        .75 
+     seg_num |     15303   3.480625          3   2.183486          1          5 
+naics3_count |     12954   1.712212          1    1.03982          1          2 
+      n_subs |     10646   68.39949         27   149.6985          9         72 
+   depth_max |     10443   2.335153          2   1.305513          1          3 
+   block_pct |     19459   .1970456   .1851164   .1624011   .0591115   .3016898 
+         lev |     19402    .263574   .2522364    .188589   .1255726   .3719192 
+           q |     19184   1.767576   1.433107    1.51312   1.129644   1.972923 
+        tang |     19437     .29702   .2421516   .2025307   .1379305   .4118523 
+        cash |     19438   .1190095   .0703135   .1410944   .0234568    .159848 
+
+.                 esttab . using "$output/Table1_PanelA.tex", booktabs  nomti ce
+> ll(" count(fmt(%9.0fc)label(N)) mean(fmt(%9.2fc)label(Mean)) p50(fmt(%9.2fc)la
+> bel(Median)) sd(fmt(%12.2fc)label(SD)) p25(fmt(%9.2fc)label(P25)) p75(fmt(%9.2
+> fc)label(P75))") varlabels(`e(labels)')  label noobs var(23) nonumb replace   
+>         
+(output written to C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcod
+> e\Replication code-20230154/Output/Table1_PanelA.tex)
+
+.                                                 
+.                 use Table11_PanelA_gdid, clear 
+
+.                 estpost tabstat  kld_csr_score kld_env_score , statistics( n m
+> ean median sd p25 p75) columns(stats)
+
+Summary statistics: count mean p50 sd p25 p75
+     for variables: kld_csr_score kld_env_score
+
+             |  e(count)    e(mean)     e(p50)      e(sd)     e(p25)     e(p75) 
+-------------+------------------------------------------------------------------
+kld_csr_sc~e |     30488    .278503          0   2.228539         -1          1 
+kld_env_sc~e |     30488   .1592102          0   .7978551          0          0 
+
+.                 esttab . using "$output/Table1_PanelA.tex", booktabs  nomti ce
+> ll(" count(fmt(%9.0fc)label(N)) mean(fmt(%9.2fc)label(Mean)) p50(fmt(%9.2fc)la
+> bel(Median)) sd(fmt(%12.2fc)label(SD)) p25(fmt(%9.2fc)label(P25)) p75(fmt(%9.2
+> fc)label(P75))") varlabels(`e(labels)')  label noobs var(23) nonumb append    
+(output written to C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcod
+> e\Replication code-20230154/Output/Table1_PanelA.tex)
+
+. 
+end of do-file
+
+. do "C:\Users\qzhan256\AppData\Local\Temp\STD81e8_000002.tmp"
+
+. use Table2_3.dta, clear 
+
+.         gen firm_choice = 0 //"do nothing"
+
+.         replace firm_choice = 1 if sell==1   //"only sell"
+(369 real changes made)
+
+.         replace firm_choice = 2 if sell==0 & plant_closure==1 & treat_pollutio
+> n==0 //"only close"
+(1,835 real changes made)
+
+.         replace firm_choice = 3 if sell==0 & plant_closure==0 & treat_pollutio
+> n==1 //"only treat"
+(1,942 real changes made)
+
+.         replace firm_choice = 4 if sell==0 & plant_closure==1 & treat_pollutio
+> n==1 // "close&treat"
+(511 real changes made)
+
+.         tab firm_choice
+
+firm_choice |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     14,802       76.07       76.07
+          1 |        369        1.90       77.96
+          2 |      1,835        9.43       87.39
+          3 |      1,942        9.98       97.37
+          4 |        511        2.63      100.00
+------------+-----------------------------------
+      Total |     19,459      100.00
+
+.         
+.         **For all other pressure indicators, include i. in the regresision for
+>  margin calcuation.  
+.         foreach x of varlist kldyear pension_mean_tri hq_dem_county have_e_eve
+> nt {
+  2.         
+.         eststo clear 
+  3.         qui: mlogit firm_choice i.`x' $firmvar, base(0)
+  4. 
+.         outreg2 using "$output/Table2.xls", drop($firmvar) $instruct ///
+>         addtext(Firm Controls, YES, Pollution Control Measure, top4_d1_pct_mgm
+> n)        addstat(Pseudo R2, e(r2_p))
+  5.         
+.         eststo clear 
+  6.         margins, dydx(`x') atmeans post
+  7.         outreg2 using "$output/Table2.xls", $instruct 
+  8.         
+.         } //end of rhs variables 
+C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcode\Replication code-
+> 20230154/Output/Table2.xls
+dir : seeout
+
+Conditional marginal effects                            Number of obs = 19,142
+Model VCE: OIM
+
+dy/dx wrt: 1.kldyear
+
+1._predict: Pr(firm_choice==0), predict(pr outcome(0))
+2._predict: Pr(firm_choice==1), predict(pr outcome(1))
+3._predict: Pr(firm_choice==2), predict(pr outcome(2))
+4._predict: Pr(firm_choice==3), predict(pr outcome(3))
+5._predict: Pr(firm_choice==4), predict(pr outcome(4))
+
+At: 0.kldyear = .4407063 (mean)
+    1.kldyear = .5592937 (mean)
+    lev       = .2625877 (mean)
+    q         = 1.766798 (mean)
+    tang      = .2952906 (mean)
+    cash      = .1194474 (mean)
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+0.kldyear    |  (base outcome)
+-------------+----------------------------------------------------------------
+1.kldyear    |
+    _predict |
+          1  |  -.0986478   .0059946   -16.46   0.000     -.110397   -.0868987
+          2  |   .0080786    .001823     4.43   0.000     .0045056    .0116515
+          3  |   .0416972   .0040763    10.23   0.000     .0337079    .0496866
+          4  |    .036407   .0042896     8.49   0.000     .0279996    .0448144
+          5  |    .012465   .0019592     6.36   0.000      .008625     .016305
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcode\Replication code-
+> 20230154/Output/Table2.xls
+dir : seeout
+C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcode\Replication code-
+> 20230154/Output/Table2.xls
+dir : seeout
+
+Conditional marginal effects                            Number of obs = 19,142
+Model VCE: OIM
+
+dy/dx wrt: 1.pension_mean_tri
+
+1._predict: Pr(firm_choice==0), predict(pr outcome(0))
+2._predict: Pr(firm_choice==1), predict(pr outcome(1))
+3._predict: Pr(firm_choice==2), predict(pr outcome(2))
+4._predict: Pr(firm_choice==3), predict(pr outcome(3))
+5._predict: Pr(firm_choice==4), predict(pr outcome(4))
+
+At: 0.pension_mean_tri = .5393898 (mean)
+    1.pension_mean_tri = .4606102 (mean)
+    lev                = .2625877 (mean)
+    q                  = 1.766798 (mean)
+    tang               = .2952906 (mean)
+    cash               = .1194474 (mean)
+
+-------------------------------------------------------------------------------
+              |            Delta-method
+              |      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+--------------+----------------------------------------------------------------
+0.pension_m~i |  (base outcome)
+--------------+----------------------------------------------------------------
+1.pension_m~i |
+     _predict |
+           1  |  -.1115021   .0061825   -18.04   0.000    -.1236196   -.0993846
+           2  |   .0083157   .0019195     4.33   0.000     .0045536    .0120779
+           3  |   .0540226   .0042631    12.67   0.000     .0456671     .062378
+           4  |   .0292123   .0044215     6.61   0.000     .0205462    .0378783
+           5  |   .0199516   .0021396     9.32   0.000      .015758    .0241451
+-------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcode\Replication code-
+> 20230154/Output/Table2.xls
+dir : seeout
+C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcode\Replication code-
+> 20230154/Output/Table2.xls
+dir : seeout
+
+Conditional marginal effects                            Number of obs = 17,668
+Model VCE: OIM
+
+dy/dx wrt: 1.hq_dem_county
+
+1._predict: Pr(firm_choice==0), predict(pr outcome(0))
+2._predict: Pr(firm_choice==1), predict(pr outcome(1))
+3._predict: Pr(firm_choice==2), predict(pr outcome(2))
+4._predict: Pr(firm_choice==3), predict(pr outcome(3))
+5._predict: Pr(firm_choice==4), predict(pr outcome(4))
+
+At: 0.hq_dem_county = .3338239 (mean)
+    1.hq_dem_county = .6661761 (mean)
+    lev             = .2595789 (mean)
+    q               = 1.764431 (mean)
+    tang            = .2922142 (mean)
+    cash            = .1210593 (mean)
+
+-------------------------------------------------------------------------------
+              |            Delta-method
+              |      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+--------------+----------------------------------------------------------------
+0.hq_dem_co~y |  (base outcome)
+--------------+----------------------------------------------------------------
+1.hq_dem_co~y |
+     _predict |
+           1  |  -.0361144   .0067219    -5.37   0.000    -.0492892   -.0229397
+           2  |   .0030858   .0019435     1.59   0.112    -.0007233     .006895
+           3  |   .0187654    .004587     4.09   0.000     .0097752    .0277557
+           4  |    .010188   .0048184     2.11   0.034     .0007441    .0196319
+           5  |   .0040752   .0022449     1.82   0.069    -.0003247    .0084751
+-------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcode\Replication code-
+> 20230154/Output/Table2.xls
+dir : seeout
+C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcode\Replication code-
+> 20230154/Output/Table2.xls
+dir : seeout
+
+Conditional marginal effects                            Number of obs = 11,489
+Model VCE: OIM
+
+dy/dx wrt: 1.have_e_event
+
+1._predict: Pr(firm_choice==0), predict(pr outcome(0))
+2._predict: Pr(firm_choice==1), predict(pr outcome(1))
+3._predict: Pr(firm_choice==2), predict(pr outcome(2))
+4._predict: Pr(firm_choice==3), predict(pr outcome(3))
+5._predict: Pr(firm_choice==4), predict(pr outcome(4))
+
+At: 0.have_e_event = .8091218 (mean)
+    1.have_e_event = .1908782 (mean)
+    lev            = .2668795 (mean)
+    q              = 1.739153 (mean)
+    tang           = .2918989 (mean)
+    cash           = .1205324 (mean)
+
+-------------------------------------------------------------------------------
+              |            Delta-method
+              |      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+--------------+----------------------------------------------------------------
+0.have_e_ev~t |  (base outcome)
+--------------+----------------------------------------------------------------
+1.have_e_ev~t |
+     _predict |
+           1  |  -.1215038   .0113781   -10.68   0.000    -.1438044   -.0992031
+           2  |   .0208682   .0042365     4.93   0.000     .0125648    .0291716
+           3  |   .0615469   .0083548     7.37   0.000     .0451717     .077922
+           4  |   .0198444   .0077498     2.56   0.010     .0046552    .0350337
+           5  |   .0192442    .004316     4.46   0.000     .0107849    .0277035
+-------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+C:\Users\qzhan256\Downloads\jofi13412-sup-0002-replicationcode\Replication code-
+> 20230154/Output/Table2.xls
+dir : seeout
+
+. 
+end of do-file
+
+. exit, clear

@@ -1,0 +1,22 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\toprule
+                    &\multicolumn{1}{c}{Quantity}&\multicolumn{1}{c}{Quantity(Qtile)}&\multicolumn{1}{c}{Intensity}&\multicolumn{1}{c}{Intensity(Qtile)}\\\cmidrule(lr){2-2}\cmidrule(lr){3-3}\cmidrule(lr){4-4}\cmidrule(lr){5-5}
+                    &\multicolumn{1}{c}{(1)}   &\multicolumn{1}{c}{(2)}   &\multicolumn{1}{c}{(3)}   &\multicolumn{1}{c}{(4)}   \\
+\midrule
+Pressure Index X Pollution&       0.693***&       2.568***&       0.514** &       1.264** \\
+                    &     (0.157)   &     (0.615)   &     (0.234)   &     (0.604)   \\
+\addlinespace
+Pollution           &      -0.123*  &      -0.379   &      -0.116   &      -0.302   \\
+                    &     (0.074)   &     (0.306)   &     (0.119)   &     (0.284)   \\
+\addlinespace
+Pressure Index      &      -2.384** &      -2.341*  &       3.142***&       1.852   \\
+                    &     (1.129)   &     (1.198)   &     (0.902)   &     (1.415)   \\
+\midrule
+\(R^{2}\)           &       0.078   &       0.079   &       0.074   &       0.075   \\
+Observations        &      12,084   &      12,084   &      11,742   &      11,742   \\
+Industry-Year FE    &         Yes   &         Yes   &         Yes   &         Yes   \\
+\bottomrule
+\end{tabular}
+}

@@ -1,0 +1,15 @@
+		(1)	(2)	(3)	(4)
+		CAR[-1 1]	CAR[-1 1]	CAR[-1 1]	CAR[-1 1]
+VARIABLES	LABELS	Market	Market	FF	FF
+					
+1.have_pos_ml	Positive Env Disclosure = 1	0.000	0.001	0.000	0.001
+		(0.001)	(0.001)	(0.001)	(0.001)
+1.divest	divest = 1	-0.001	-0.000	-0.001	0.000
+		(0.001)	(0.001)	(0.001)	(0.001)
+1.have_pos_ml#1.divest		0.005**	0.005*	0.005*	0.004
+		(0.002)	(0.003)	(0.002)	(0.003)
+					
+Observations		174,531	174,531	174,531	174,531
+R-squared		0.000	0.002	0.000	0.001
+Robust standard errors in parentheses					
+*** p<0.01, ** p<0.05, * p<0.1					

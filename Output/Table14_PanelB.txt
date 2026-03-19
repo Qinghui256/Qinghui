@@ -1,0 +1,12 @@
+		(1)	(2)
+VARIABLES	LABELS	Buyer (NonPollutive)	Develop New Relationship
+			
+friends	Operationally Related	-0.010	
+		(0.014)	
+treat	Buyer (NonPollutive)		0.003
+			(0.002)
+			
+Observations		265,003	265,003
+R-squared		0.003	0.207
+Robust standard errors in parentheses			
+*** p<0.01, ** p<0.05, * p<0.1			

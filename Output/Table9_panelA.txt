@@ -1,0 +1,12 @@
+		(1)	(2)
+VARIABLES	LABELS	Buyer (Pollutive)	Develop New Relationship
+			
+friends	Operationally Related	0.651***	
+		(0.099)	
+treat	Buyer (Pollutive)		0.069***
+			(0.013)
+			
+Observations		3,576	3,576
+R-squared		0.040	0.247
+Robust standard errors in parentheses			
+*** p<0.01, ** p<0.05, * p<0.1			
